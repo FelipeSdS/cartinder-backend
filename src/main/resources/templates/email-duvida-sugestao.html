@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+  <table width="100%" style="font-family: Roboto-Regular,Helvetica,Arial,sans-serif;">
+    <tbody>
+	  <tr>
+	  	<td>Uma nova dúvida ou sugestão foi enviada:</td>
+	  </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Nome: </strong><span th:text="${data.nome}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Email: </strong><span th:text="${data.email}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Telefone: </strong><span th:text="${data.telefone}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Mensagem: </strong></td>
+      </tr>
+      <tr>
+      	<td style="padding: 10px;" align="left">
+      		<span th:text="${data.mensagem}"></span>
+      	</td>
+      </tr>
+      <tr>
+        <td style="padding: 0px 15px;" align="left"></td>
+      </tr>
+      <tr>
+        <td><strong>Att:</strong></td>
+      </tr>
+      <tr style="background: #343a40!important;">
+        <td style="padding: 0px 10px;">
+          <p style="
+            font-size: 35px;
+            font-family: 'Satisfy', cursive;
+            font-weight: bold;
+            color: #fefefe;
+            text-shadow: 5px 5px 10px #2573a1;
+            margin: 10px 20px;
+          ">Equipe CarTinder</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+  <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet">
+</head>
+<body>
+  <table width="100%">
+    <thead>
+      <tr>
+        <th align="center"><strong>Anuncio #<span th:text="${data.anuncio.id_anuncio}"></span></strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Olá Senhor(a) <strong th:text="${data.anuncio.cliente.nome}"></strong> ,</td>
+      </tr>
+      <tr>
+        <td>Seu anuncio referente ao carro <strong th:text="${data.anuncio.carro.modelo}"></strong> despertou interesse de um consumidor</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Nome: </strong><span th:text="${data.comprador}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Email: </strong><span th:text="${data.emailComprador}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Telefone: </strong><span th:text="${data.telefoneComprador}"></span></td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"><strong>Mensagem: </strong></td>
+      </tr>
+      <tr>
+      	<td>
+      		<span th:text="${data.mensagemComprador}"></span>
+      	</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px;" align="left"></td>
+      </tr>
+      <tr>
+        <td><strong>Att:</strong></td>
+      </tr>
+      <tr style="background: #343a40!important;">
+        <td style="padding: 0px 10px;">
+          <p style="
+            font-size: 35px;
+            font-family: 'Satisfy', cursive;
+            font-weight: bold;
+            color: #fefefe;
+            text-shadow: 5px 5px 10px #2573a1;
+            margin: 10px 20px;
+          ">Equipe CarTinder</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
