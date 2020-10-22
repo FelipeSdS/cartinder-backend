@@ -15,7 +15,7 @@ public class EmailDuvidaSugestao {
 
 	private String nome;
 	
-	private String email;
+	private String duvidaEmail;
 	
 	private String telefone;
 	

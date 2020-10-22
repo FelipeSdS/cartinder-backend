@@ -57,7 +57,7 @@ public class SendEmailService {
 	
 	public Boolean enviarEmailDuvidaSugestao(EmailDuvidaSugestao emailDuvidaSugestao) {
 		try {
-			enviarEmail(emailDuvidaSugestao, "equipecartinder@gmail.com", new EmailTemplateDuvidaSugestao());
+			enviarEmail(emailDuvidaSugestao, "equipecartinder@gmail.com", new EmailTemplateDuvidaSugestao(emailDuvidaSugestao.getNome()));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
