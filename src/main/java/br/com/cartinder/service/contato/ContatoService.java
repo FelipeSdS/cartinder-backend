@@ -1,10 +1,12 @@
 package br.com.cartinder.service.contato;
 
+import javax.management.RuntimeErrorException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cartinder.model.anuncio.Anuncio;
-import br.com.cartinder.model.email.EmailInteresseConfirmacao;
+import br.com.cartinder.model.email.EmailConfirmacao;
 import br.com.cartinder.model.email.EmailDuvidaSugestao;
 import br.com.cartinder.model.email.EmailInteresse;
 import br.com.cartinder.model.email.FormularioInteresse;
@@ -31,21 +33,26 @@ public class ContatoService {
 		emailInteresse.setTelefoneComprador(anuncioInteresse.getTelefone());
 		emailInteresse.setMensagemComprador(anuncioInteresse.getMensagem());
 		
-		EmailInteresseConfirmacao emailConfirmacao = new EmailInteresseConfirmacao();
+		EmailConfirmacao emailConfirmacao = new EmailConfirmacao();
 		emailConfirmacao.setNome(anuncioInteresse.getNome());
-		emailConfirmacao.setEmail(anuncioInteresse.getEmail());
+		emailConfirmacao.setEmailUsuario(anuncioInteresse.getEmail());
 		
 		
 		if(emailService.enviarEmailInteresse(emailInteresse, anuncio.getCliente().getEmail())){
 			emailService.enviarEmailInteresseConfirmacao(emailConfirmacao);
 		}else {
-			
+			throw new RuntimeException("Erro ao enviar o email");
 		}
 	}
 	
 	public void duvidasSugestoes(EmailDuvidaSugestao duvidaSugestao){
+		EmailConfirmacao emailConfirmacao = new EmailConfirmacao();
+		emailConfirmacao.setNome(duvidaSugestao.getNome());
+		emailConfirmacao.setEmailUsuario(duvidaSugestao.getDuvidaEmail());
 		if(emailService.enviarEmailDuvidaSugestao(duvidaSugestao)){
-			
+			emailService.enviarEmailDuvidaSugestaoConfirmacao(emailConfirmacao);
+		}else {
+			throw new RuntimeException("Erro ao enviar o email");
 		}
 	}
 }

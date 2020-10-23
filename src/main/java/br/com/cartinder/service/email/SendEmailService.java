@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import br.com.cartinder.model.email.EmailInteresseConfirmacao;
+import br.com.cartinder.model.email.EmailConfirmacao;
 import br.com.cartinder.model.email.EmailDuvidaSugestao;
 import br.com.cartinder.model.email.EmailInteresse;
 import br.com.cartinder.model.genericEmail.Email;
@@ -23,7 +23,8 @@ import br.com.cartinder.model.genericEmail.EmailFrom;
 import br.com.cartinder.model.genericEmail.EmailRecipient;
 import br.com.cartinder.model.genericEmail.IEmail;
 import br.com.cartinder.template.EmailTemplate;
-import br.com.cartinder.template.EmailTemplateConfirmacao;
+import br.com.cartinder.template.EmailTemplateConfirmacaoDuvida;
+import br.com.cartinder.template.EmailTemplateConfirmacaoInteresse;
 import br.com.cartinder.template.EmailTemplateDuvidaSugestao;
 import br.com.cartinder.template.EmailTemplateInteresse;
 
@@ -45,9 +46,9 @@ public class SendEmailService {
 		return true;
 	}
 	
-	public Boolean enviarEmailInteresseConfirmacao(EmailInteresseConfirmacao emailConfirmacao) {
+	public Boolean enviarEmailInteresseConfirmacao(EmailConfirmacao emailConfirmacao) {
 		try {
-			enviarEmail(emailConfirmacao, emailConfirmacao.getEmail(), new EmailTemplateConfirmacao());
+			enviarEmail(emailConfirmacao, emailConfirmacao.getEmailUsuario(), new EmailTemplateConfirmacaoInteresse());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -58,6 +59,16 @@ public class SendEmailService {
 	public Boolean enviarEmailDuvidaSugestao(EmailDuvidaSugestao emailDuvidaSugestao) {
 		try {
 			enviarEmail(emailDuvidaSugestao, "equipecartinder@gmail.com", new EmailTemplateDuvidaSugestao(emailDuvidaSugestao.getNome()));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
+	
+	public Boolean enviarEmailDuvidaSugestaoConfirmacao(EmailConfirmacao emailConfirmacao) {
+		try {
+			enviarEmail(emailConfirmacao, emailConfirmacao.getEmailUsuario() , new EmailTemplateConfirmacaoDuvida());
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;

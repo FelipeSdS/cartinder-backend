@@ -14,7 +14,7 @@ import br.com.cartinder.dto.anuncio.AnuncioSaidaDTO;
 import br.com.cartinder.model.anuncio.Anuncio;
 import br.com.cartinder.model.carro.Carro;
 import br.com.cartinder.model.cliente.Cliente;
-import br.com.cartinder.model.email.EmailInteresseConfirmacao;
+import br.com.cartinder.model.email.EmailConfirmacao;
 import br.com.cartinder.model.email.EmailInteresse;
 import br.com.cartinder.model.email.FormularioInteresse;
 import br.com.cartinder.repository.anuncio.AnuncioRepository;
