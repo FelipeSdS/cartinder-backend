@@ -30,4 +30,6 @@ public class AnuncioSaidaDTO {
 	private String cor;
 	
 	private Integer portas; 
+	
+	private String foto;
 }

@@ -61,6 +61,9 @@ public class Carro {
 	
 	@Column(name="qtd_portas")
 	private Integer portas;
+	
+	@Column(name="tx_foto")
+	private String foto;
 		
 	@JsonIgnore
 	@OneToOne(cascade = CascadeType.ALL )
