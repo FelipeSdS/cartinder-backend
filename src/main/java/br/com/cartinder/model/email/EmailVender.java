@@ -1,15 +1,23 @@
-package br.com.cartinder.dto.anuncio;
+package br.com.cartinder.model.email;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class AnuncioEntradaDTO {
-
-	private Long id_cliente;
+@NoArgsConstructor
+@AllArgsConstructor
+public class EmailVender {
 	
-	private Double preco;
+	private String nome;
+	
+	private String email;
+	
+	private String celular;
+	
+	private String preco;
 	
 	private String modelo;
 	
@@ -31,5 +39,4 @@ public class AnuncioEntradaDTO {
 	
 	private Integer portas; 
 	
-	private String foto;
 }

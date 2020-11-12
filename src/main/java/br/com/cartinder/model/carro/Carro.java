@@ -44,8 +44,8 @@ public class Carro {
 	@Column(name="vl_quilometragem")
 	private Long quilometragem;
 	
-	@Column(name="vl_potencia")
-	private Double potenciaMotor;
+	@Column(name="tx_potencia")
+	private String potenciaMotor;
 	
 	@Column(name="tx_combustivel")
 	private String combustivel;
@@ -66,7 +66,7 @@ public class Carro {
 	private String foto;
 		
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL )
-	@JoinColumn(name="id_anuncio")
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true )
+	@JoinColumn(name="anuncio_id")
 	private Anuncio anuncio;
 }

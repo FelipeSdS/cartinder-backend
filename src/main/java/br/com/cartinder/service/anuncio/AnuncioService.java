@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.com.cartinder.dto.anuncio.AnuncioEntradaDTO;
+import br.com.cartinder.dto.anuncio.AnuncioFiltros;
 import br.com.cartinder.dto.anuncio.AnuncioSaidaDTO;
 import br.com.cartinder.model.anuncio.Anuncio;
 import br.com.cartinder.model.carro.Carro;
@@ -69,6 +70,34 @@ public class AnuncioService {
 			throw new RuntimeException("Nenhum carro encontrado com esta marca");
 		}
 		return listAnuncioSaidaDTO;
+	}
+	
+	public List<AnuncioSaidaDTO> buscaComFiltro(AnuncioFiltros filtros){
+		List<Anuncio> resultAnuncio = new ArrayList<>();
+		
+		if((filtros.getMarca() != null && !filtros.getMarca().isEmpty()) && (filtros.getAno() != null && filtros.getAno() != 0)) {
+			resultAnuncio = anuncioRepository.buscaAnuncioPorMarcaAno(filtros.getMarca(), filtros.getAno());
+		}
+		else if(filtros.getMarca() != null && !filtros.getMarca().isEmpty()){
+			resultAnuncio = anuncioRepository.buscaAnuncioPorMarca(filtros.getMarca());
+		}
+		else if(filtros.getAno() != null && filtros.getAno() != 0){
+			resultAnuncio = anuncioRepository.buscaAnuncioPorAno(filtros.getAno());
+		}
+		
+		if(resultAnuncio.isEmpty()){
+			throw new RuntimeException("Nenhum carro encontrado");
+		}else {
+			List<AnuncioSaidaDTO> anuncioSaidaDTO  = new ArrayList<>();
+			resultAnuncio.forEach(f->{
+				anuncioSaidaDTO.add(convertAnuncioSaidaDTO(f));
+			});
+			return anuncioSaidaDTO;
+		}
+	}
+	
+	public void deleteAllAnuncio() {
+		anuncioRepository.deleteAll();
 	}
 	
 	private Anuncio convertAnuncio(AnuncioEntradaDTO anuncioEntradaDTO){

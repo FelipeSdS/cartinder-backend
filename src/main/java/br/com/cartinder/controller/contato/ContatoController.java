@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cartinder.model.email.EmailDuvidaSugestao;
+import br.com.cartinder.model.email.EmailVender;
 import br.com.cartinder.model.email.FormularioInteresse;
 import br.com.cartinder.service.contato.ContatoService;
 
@@ -30,5 +31,13 @@ public class ContatoController {
 		contatoService.duvidasSugestoes(emailDuvidaSugestao);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	@PostMapping("/vender")
+	public ResponseEntity<?> vender(@RequestBody EmailVender emailVender){
+		contatoService.vender(emailVender);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+
 
 }

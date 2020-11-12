@@ -9,6 +9,7 @@ import br.com.cartinder.model.anuncio.Anuncio;
 import br.com.cartinder.model.email.EmailConfirmacao;
 import br.com.cartinder.model.email.EmailDuvidaSugestao;
 import br.com.cartinder.model.email.EmailInteresse;
+import br.com.cartinder.model.email.EmailVender;
 import br.com.cartinder.model.email.FormularioInteresse;
 import br.com.cartinder.repository.anuncio.AnuncioRepository;
 import br.com.cartinder.service.email.SendEmailService;
@@ -51,6 +52,16 @@ public class ContatoService {
 		emailConfirmacao.setEmailUsuario(duvidaSugestao.getDuvidaEmail());
 		if(emailService.enviarEmailDuvidaSugestao(duvidaSugestao)){
 			emailService.enviarEmailDuvidaSugestaoConfirmacao(emailConfirmacao);
+		}else {
+			throw new RuntimeException("Erro ao enviar o email");
+		}
+	}
+	
+	public void vender(EmailVender vender){
+
+
+		if(emailService.enviarEmailVender(vender)){
+
 		}else {
 			throw new RuntimeException("Erro ao enviar o email");
 		}

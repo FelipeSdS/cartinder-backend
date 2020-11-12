@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -43,8 +45,9 @@ public class Anuncio {
 	@Column(name="dt_cancelamento")
 	private Date dataCancelamento;
 	
-	@OneToOne(cascade = CascadeType.ALL )
+	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
 	@JoinColumn(name="carro_id")
+	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Carro carro;
 	
 	@JsonIgnore

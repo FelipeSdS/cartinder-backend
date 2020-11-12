@@ -18,6 +18,7 @@ import org.thymeleaf.context.Context;
 import br.com.cartinder.model.email.EmailConfirmacao;
 import br.com.cartinder.model.email.EmailDuvidaSugestao;
 import br.com.cartinder.model.email.EmailInteresse;
+import br.com.cartinder.model.email.EmailVender;
 import br.com.cartinder.model.genericEmail.Email;
 import br.com.cartinder.model.genericEmail.EmailFrom;
 import br.com.cartinder.model.genericEmail.EmailRecipient;
@@ -27,6 +28,7 @@ import br.com.cartinder.template.EmailTemplateConfirmacaoDuvida;
 import br.com.cartinder.template.EmailTemplateConfirmacaoInteresse;
 import br.com.cartinder.template.EmailTemplateDuvidaSugestao;
 import br.com.cartinder.template.EmailTemplateInteresse;
+import br.com.cartinder.template.EmailTemplateVender;
 
 @Service
 public class SendEmailService {
@@ -76,6 +78,15 @@ public class SendEmailService {
 		return true;
 	}
 	
+	public Boolean enviarEmailVender(EmailVender emailVender) {
+		try {
+			enviarEmail(emailVender, "equipecartinder@gmail.com", new EmailTemplateVender(emailVender.getNome()));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+	}
 	
 	
 	private Boolean enviarEmail(Object data, String destinatario, EmailTemplate template) throws Exception {

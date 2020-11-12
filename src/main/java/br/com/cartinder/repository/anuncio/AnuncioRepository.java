@@ -13,8 +13,19 @@ import br.com.cartinder.model.anuncio.Anuncio;
 public interface AnuncioRepository extends JpaRepository<Anuncio, Long> {
 
 	@Query("SELECT an FROM Anuncio an "
-			+ "WHERE an.carro.marca = :paramMarca")
+			+ "WHERE an.carro.marca = :paramMarca ")
 	public List<Anuncio> buscaAnuncioPorMarca(
 			@Param("paramMarca") String paramMarca);
 		
+	@Query("SELECT an FROM Anuncio an "
+			+ "WHERE an.carro.ano = :paramAno ")
+	public List<Anuncio> buscaAnuncioPorAno(
+			@Param("paramAno") Integer ano);
+	
+	@Query("SELECT an FROM Anuncio an "
+			+ "WHERE an.carro.marca = :paramMarca "
+			+ "AND an.carro.ano = :paramAno")
+	public List<Anuncio> buscaAnuncioPorMarcaAno(
+			@Param("paramMarca") String paramMarca,
+			@Param("paramAno") Integer ano);
 }
