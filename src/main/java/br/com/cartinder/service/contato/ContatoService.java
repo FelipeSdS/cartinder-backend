@@ -1,6 +1,5 @@
 package br.com.cartinder.service.contato;
 
-import javax.management.RuntimeErrorException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,19 +23,19 @@ public class ContatoService {
 	SendEmailService emailService;
 	
 	public void tenhoInteresse(FormularioInteresse anuncioInteresse) throws Exception{
-		Anuncio anuncio = anuncioRepository.findById(anuncioInteresse.getId_anuncio()).orElseThrow(
+		Anuncio anuncio = anuncioRepository.findById(anuncioInteresse.getIdAnuncio()).orElseThrow(
 		() -> new RuntimeException("Anuncio não encontrado"));
 		
 		EmailInteresse emailInteresse = new EmailInteresse();
 		emailInteresse.setAnuncio(anuncio);
 		emailInteresse.setComprador(anuncioInteresse.getNome());
-		emailInteresse.setEmailComprador(anuncioInteresse.getEmail());
+		emailInteresse.setEmailComprador(anuncioInteresse.getDuvidaEmail());
 		emailInteresse.setTelefoneComprador(anuncioInteresse.getTelefone());
 		emailInteresse.setMensagemComprador(anuncioInteresse.getMensagem());
 		
 		EmailConfirmacao emailConfirmacao = new EmailConfirmacao();
 		emailConfirmacao.setNome(anuncioInteresse.getNome());
-		emailConfirmacao.setEmailUsuario(anuncioInteresse.getEmail());
+		emailConfirmacao.setEmailUsuario(anuncioInteresse.getDuvidaEmail());
 		
 		
 		if(emailService.enviarEmailInteresse(emailInteresse, anuncio.getCliente().getEmail())){

@@ -13,11 +13,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class FormularioInteresse {
 
-	private Long id_anuncio;
+	private Long idAnuncio;
 	
 	private String nome;
 	
-	private String email;
+	private String duvidaEmail;
 	
 	private String telefone;
 	

@@ -19,7 +19,7 @@ public class AnuncioSaidaDTO {
 	
 	private Long quilometragem;
 	
-	private Double potenciaMotor;
+	private String potenciaMotor;
 	
 	private String combustivel;
 	
