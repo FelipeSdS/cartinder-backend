@@ -100,6 +100,10 @@ public class AnuncioService {
 		anuncioRepository.deleteAll();
 	}
 	
+	public void deleteAnuncio(Long idAnuncio){
+		anuncioRepository.deleteById(idAnuncio);
+	}
+	
 	private Anuncio convertAnuncio(AnuncioEntradaDTO anuncioEntradaDTO){
 		 ModelMapper modelMapper = new ModelMapper();
 		 Anuncio anuncio = new Anuncio();

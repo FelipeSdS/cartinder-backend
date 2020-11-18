@@ -32,9 +32,7 @@ public class Cliente {
 	
 	@Column(name="tx_nome")
 	private String nome;
-	
-	@Column(name="tx_cnpj")
-	private String cnpj;	
+
 	
 	@Column(name="tx_email")
 	private String email;
