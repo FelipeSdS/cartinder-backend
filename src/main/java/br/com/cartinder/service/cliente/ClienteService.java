@@ -38,8 +38,8 @@ public class ClienteService {
 		return clienteRepository.findById(id).orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
 	}
 	
-	public void updateCliente(ClienteAtualizaDTO dto){
-		Optional<Cliente> optionalCliente = clienteRepository.findById(dto.getIdCliente());
+	public void updateCliente(Long id, ClienteAtualizaDTO dto){
+		Optional<Cliente> optionalCliente = clienteRepository.findById(id);
 		if(optionalCliente.isPresent()) {
 			Cliente cliente = optionalCliente.get();
 			cliente.setNome(dto.getNome());

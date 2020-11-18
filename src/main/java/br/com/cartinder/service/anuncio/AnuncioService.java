@@ -4,11 +4,15 @@ package br.com.cartinder.service.anuncio;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+import javax.management.RuntimeErrorException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.cartinder.dto.anuncio.AnuncioAtualizaDTO;
 import br.com.cartinder.dto.anuncio.AnuncioEntradaDTO;
 import br.com.cartinder.dto.anuncio.AnuncioFiltros;
 import br.com.cartinder.dto.anuncio.AnuncioSaidaDTO;
@@ -102,6 +106,26 @@ public class AnuncioService {
 	
 	public void deleteAnuncio(Long idAnuncio){
 		anuncioRepository.deleteById(idAnuncio);
+	}
+	
+	public void updateAnuncio(Long idAnuncio, AnuncioAtualizaDTO dto){
+		Optional<Anuncio> optionalAnuncio =  anuncioRepository.findById(idAnuncio);
+		if(optionalAnuncio.isPresent()) {
+			Anuncio anuncio = optionalAnuncio.get();
+			anuncio.setPreco(dto.getPreco());
+			anuncio.getCarro().setMarca(dto.getMarca());
+			anuncio.getCarro().setModelo(dto.getModelo());
+			anuncio.getCarro().setCambio(dto.getCambio());
+			anuncio.getCarro().setCombustivel(dto.getCombustivel());
+			anuncio.getCarro().setCor(dto.getCor());
+			anuncio.getCarro().setQuilometragem(dto.getQuilometragem());
+			anuncio.getCarro().setPortas(dto.getPortas());
+			anuncio.getCarro().setPotenciaMotor(dto.getPotenciaMotor());
+			anuncioRepository.save(anuncio);
+		}else {
+			throw new RuntimeException("Anuncio não encontrado !!!");
+		}
+			
 	}
 	
 	private Anuncio convertAnuncio(AnuncioEntradaDTO anuncioEntradaDTO){

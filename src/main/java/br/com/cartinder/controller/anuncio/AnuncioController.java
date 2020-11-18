@@ -9,11 +9,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.cartinder.dto.anuncio.AnuncioAtualizaDTO;
 import br.com.cartinder.dto.anuncio.AnuncioEntradaDTO;
 import br.com.cartinder.dto.anuncio.AnuncioFiltros;
 import br.com.cartinder.dto.anuncio.AnuncioSaidaDTO;
@@ -47,11 +49,6 @@ public class AnuncioController {
 		return new ResponseEntity<List<?>>(anuncioService.buscaAnuncioPorMarca(param), HttpStatus.OK);
 	}
 	
-	@PostMapping("/filtros")
-	public ResponseEntity<List<?>> buscaAnuncioFiltros(@RequestBody AnuncioFiltros anuncioFiltros){
-		return new ResponseEntity<List<?>>(anuncioService.buscaComFiltro(anuncioFiltros), HttpStatus.OK);
-	}
-	
 	@DeleteMapping("/reset")
 	public ResponseEntity<?> deleteAllAnuncios(){
 		anuncioService.deleteAllAnuncio();
@@ -59,8 +56,14 @@ public class AnuncioController {
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteAnuncio(@RequestParam Long idAnuncio){
-		anuncioService.deleteAnuncio(idAnuncio);
+	public ResponseEntity<?> deleteAnuncio(@PathVariable(name="id") Long id){
+		anuncioService.deleteAnuncio(id);
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> updateAnuncio(@PathVariable(name="id") Long id, @RequestBody AnuncioAtualizaDTO dto ){
+		anuncioService.updateAnuncio(id,dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }

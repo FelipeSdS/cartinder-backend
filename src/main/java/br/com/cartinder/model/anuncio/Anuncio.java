@@ -42,8 +42,6 @@ public class Anuncio {
 	@Column(name="dt_criacao")
 	private Date dataCriacao;
 	
-	@Column(name="dt_cancelamento")
-	private Date dataCancelamento;
 	
 	@OneToOne(cascade = CascadeType.ALL , orphanRemoval = true)
 	@JoinColumn(name="carro_id")

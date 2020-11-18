@@ -42,15 +42,15 @@ public class ClienteController {
 		return new ResponseEntity<Cliente>(clienteService.findById(id), HttpStatus.OK);
 	}
 	
-	@PutMapping
-	public ResponseEntity<?> updateCliente (@RequestBody ClienteAtualizaDTO dto){
-		clienteService.updateCliente(dto);
+	@PutMapping("/{id}")
+	public ResponseEntity<?> updateCliente (@PathVariable(name="id") Long id, @RequestBody ClienteAtualizaDTO dto){
+		clienteService.updateCliente(id,dto);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<?> deleteCliente(@RequestParam Long idCliente){
-		clienteService.deleteCliente(idCliente);
+	public ResponseEntity<?> deleteCliente(@PathVariable(name="id") Long id){
+		clienteService.deleteCliente(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 }
